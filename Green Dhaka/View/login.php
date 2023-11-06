@@ -10,7 +10,7 @@
             }
          }
     </style>
-        <form method="post" action="Dashboard.php">
+        <form method="post" action="Customer/cusDashboard.php">
           <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="2%" width="15%" align="center">

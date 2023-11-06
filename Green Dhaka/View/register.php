@@ -39,8 +39,9 @@
                 Password<br> <input type="password" name="password" value="" /> <br>
                 Confirm Password<br> <input type="password" name="confirmPassword" value="" /> <br>
                 <br>
-                
                 <input type="submit" name="submit" value="Submit" />
+                <br><br>
+                Already Have an Account! <a href="login.php" text-align="right"> Login</a><br>
                 </p>
 
                 </td>
