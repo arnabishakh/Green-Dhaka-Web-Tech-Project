@@ -1,6 +1,4 @@
-﻿<?php
-
-?>
+﻿
     <style>
   
          body {
@@ -19,7 +17,7 @@
     <body>
 
 
-        <form method="post" action="../Controller/registrationcheck.php">
+        <form method="post" action="../Controller/registrationcheck.php" onsubmit="return validation()">
           <table border="0" width = "100%" height = "100%">
             <tr height="5%">
                 <td height="" width="15%" align="center">
@@ -57,7 +55,9 @@
                 Confirm Password<br> 
                 <input type="password"  id="confirmPassword" name="confirmPassword" value="" /> <br>
                 
-                <br>
+               
+                <p id="error-message" style="color: red;"></p>
+                
                 <input type="submit" name="submit" value="Submit" />
                 <br><br>
                 Already Have an Account! <a href="login.php" text-align="right"> Login</a><br>
@@ -91,7 +91,7 @@
     </table>  
 
         </form>
- 
+            <script src="../Asset/registration.js"></script>
         </body>
 </html>
            

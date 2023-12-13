@@ -6,10 +6,9 @@
 	$cnum = $_POST['cnum'];
     $uppassword = $_POST['uppassword'];
 
-    //for validation pupose
     $len_password = strlen($uppassword);
     $len_contactNumber = strlen($cnum);
-    // Validate password strength
+    
     $number    = preg_match('@[0-9]@', $uppassword);
     $specialChars = preg_match('@[^\w]@', $uppassword);
     

@@ -4,41 +4,13 @@ session_start();
         header('location: login.php');
     }
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
+<html>
+<head>
+<link rel="stylesheet" href="../Asset/chat.css">
+</head>
+<body>
 
-         }
-    </style>
-    <form method="post" action="../Controller/calculator.php">
-    <table border="1" width = "100%" height = "100%">
+    <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
                     <img src="../Images/logo.png" height="100" width="100" alt="Green Dhaka Logo">
@@ -74,7 +46,7 @@ session_start();
                     <a href="cusDonation.php">Donation</a>
                     <a href="cusHiringagardener.php">Hire a Gardener</a>
                     <a href="cusExpert.php">Expert opinion</a>
-                    <a href="cusHomevisit.php">Schedule a Home Visit</a>
+                    <a href="cusChat.php">Shoutbox</a>
                     <a href="cusSupport.php">Support</a>
                     <a href="cusServiceHistory.php">Service History</a>
                     <a href="cusAboutUS.php">About Us</a>
@@ -86,20 +58,22 @@ session_start();
             <tr>
             
                 <td align ="center" colspan="3">
-                <h1 style="color:SeaGreen;"> <b> Chat </b> </h1>
-                <table border="1" align ="center">
+                <h1 style="color:SeaGreen;"> <b> ShoutBox </b> </h1>
+                <table border="0" align ="center">
                 <tr>
-                    <td width="50%" height="45%">
+                    <td >
                         
-                    </td>
-                    <td td width="50%" height="45%">
-                    <h2 style="color:SeaGreen;"> <b> Pickup Location </b> </h2>
-                                <textarea name="reply" rows="4" cols="60">
-                                 Enter Your Address Here
-                                </textarea>
+                    
                     </td>
                 </tr>
-
+                    <div id="chat-container">
+                        <div id="chat-messages"></div>
+                        <div id="user-input">
+                            <textarea id="message-input"  rows="4" cols="60"></textarea>
+                           <br>
+                            <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
 
 
 
@@ -124,4 +98,6 @@ session_start();
             
 
     </table>
-    </form>
+   <script src="../Asset/chat.js"></script>
+    </body>
+    </html>

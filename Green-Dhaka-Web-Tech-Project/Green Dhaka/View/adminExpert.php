@@ -1,40 +1,8 @@
 <?php
-
-
+   $conn = mysqli_connect('localhost','root','','greendhaka') or die('connection failed');
+    $result = mysqli_query($conn, "SELECT * FROM `appointments`");
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-
-         }
-    </style>
+    <link rel="stylesheet" href="../Asset/styleAdmin.css">
     <form method="post" action="../Controller/solarinsert.php">
     <table border="0" width = "100%" height = "100%">
             <tr >
@@ -77,8 +45,26 @@
                 <td align ="center">
                 <h3 style="color:SeaGreen;"> <b> Expert Appointment Approval </b> </h3>
                 <br>
-                <h3 style="color:SeaGreen;"> Under Maintanance  </h3>
-                
+                 <table border="1" width ="90%" align ="center">
+                        <tr >
+                            <td> Appointment ID   </td>
+                            <td> Expert ID  </td>
+                            <td> Appointment Date   </td>
+                            <td> Request Date   </td>
+                            <td> Status  </td>
+                            
+                        </tr>
+                        <?php while($data = mysqli_fetch_assoc($result)){ ?>
+                                <tr>
+                                    <td><?=$data['id']?></td>
+                                    <td><?=$data['expert_id']?></td>
+                                    <td><?=$data['appointment_date']?></td>
+                                    <td><?=$data['request_date']?></td>
+                                    <td><?=$data['status']?></td>
+                                    
+                                </tr>
+                              <?php  } ?>
+                    </table>    
 
                 </td>
 

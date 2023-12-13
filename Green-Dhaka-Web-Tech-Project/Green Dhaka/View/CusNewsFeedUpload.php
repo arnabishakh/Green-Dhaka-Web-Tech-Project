@@ -1,49 +1,46 @@
 <?php
- session_start();
+session_start();
     if(!isset($_SESSION['valid'])){
         header('location: login.php');
     }
-
-
+   
 ?>
-<head>
-    <script src="../Asset/calculator.js" defer></script>
-</head>
-<body>
     <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
+            body {
+                background-image: url('../Images/white.jpg');
+                background-repeat: no-repeat;
+                background-size: 1500px 600px;
+                
             }
-         a:link {
+
+            a:link {
                 background-color: SeaGreen;
                 color: white;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-         }
-         a:visited {
+            }
+
+            a:visited {
                 background-color: SeaGreen;
                 color: white;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-         }
-         a:hover {
+            }
+
+            a:hover {
                 background-color: transparent;
                 color: Black;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-
-         }
+            }
     </style>
-    <form method="post" action="../Controller/calculator.php">
+    <form method="post" name="upload" action="../Controller/feedPostUpload.php" onsubmit="return validateForm()" enctype="multipart/form-data">
     <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
@@ -53,7 +50,7 @@
                     <h1 style="color:SeaGreen;">  </h1> <br>
                     <h1 style="color:SeaGreen;"> Green Dhaka </h1>
                     <h4 style="color:SeaGreen;"> An initiative of Dhaka City Corporation </h4>
-                    <p style="color:SeaGreen;"> <b>  </b> </p>
+                    
                     
                 </td>
                 <td >
@@ -74,7 +71,7 @@
             </tr>
             <tr>
                 <td colspan="3" align="center" height ="8%">
-                    <a href="cusGardenregistration.php">Garden Registration</a>
+                     <a href="cusGardenregistration.php">Garden Registration</a>
                     <a href="cusSolarregistration.php">Solar Panel Request</a>
                     <a href="CusNewsFeed.php">News feed</a>
                     <a href="cusSubsidiarycalculator.php">Subsidiary Calculator</a>
@@ -87,69 +84,48 @@
                     <a href="cusServiceHistory.php">Service History</a>
                     <a href="cusAboutUS.php">About Us</a>
                     <a href="FAQ.php">FAQ</a>
+
+
                 </td>
                 
             </tr>
             <tr>
-            <td>
-            <p style="color:SeaGreen;"> 
-            -   To secure a subsidiary for garden and solar panel installations, initiate the process by sending a formal request via mail to the city corporation or contact our support.
-            <br>
-            -   Include supporting documents or plans to aid in the evaluation process.
-            <br>
-            -   Adhering to these steps enhances the chances of successfully obtaining the subsidiary, also promoting sustainability and benefiting our community and environment.
-            <br> </p>
-            
+            <td align ="center">
+                <a href="CusNewsFeed.php"> News Feed </a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
             </td>
                 <td align ="center">
-                <h3 style="color:SeaGreen;"> Subsidiary Calculator  </h3>
-                <table border="0" align ="center">
-                <tr align ="left">
-                    
-                
+                <h1 style="color:SeaGreen;"> <b> Write a Post </b> </h1>
+                <table border="1" align="">
+                <tr>
+                    <td align="left">
+                    <?php echo $_SESSION['email']; ?>
+                    </td>
                 </tr>
-                <tr align ="left">
-                    <td width="60%"> Area of Rooftop (Sqr-ft)
+                <tr>
+                    <td>Write your Caption :<br>
+                    <textarea  name="caption" rows="10" cols="60"></textarea>
                     </td>
-                    <td>:
-                    </td>
-                    <td>
-                    <input type="number" id="rArea" >
-                    </td>
-                
                 </tr>
-                <tr align ="left">
-                    <td width="60%">  Area of Garden (Sqr-ft)
-                    </td>
-                    <td>:
-                    </td>
+                <tr>
                     <td>
-                    <input type="number" id="gArea" >
-
+                    Attach Photo here :
+                    <input type="file" name="image" id = "image" accept=".jpg, .jpeg, .png" value="">
                     </td>
-                
                 </tr>
-                <tr align ="left">
-                    <td width="60%"> Area of Solar panel (Sqr-ft)
-                    </td>
-                    <td>:
-                    </td>
-                    <td>
-                    <input type="number" id="sArea" >
-
-                    </td>
+                <tr>
+                    <td align ="center">
+                    <input type="submit" name="submit" value="Post" size="23"/>
                 </tr>
                 </table>
                 <br>
-               <br><br>
-                <input type="button" id="submitButton" value="Calculate">
-                 <input type="button" id="clearButton" value="Clear">
-                <br>
-                <div id="result"></div>
-                
+                <b><span class="formerror"> </span></b>
+
                 </td>
 
-                <td>
+                <td align ="center">
+                <a href="CusNewsFeedPost.php"> My Posts </a><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
             </td>
             </tr>
            
@@ -167,3 +143,4 @@
 
     </table>
     </form>
+    <script src="../Asset/newsfeed.js"></script>

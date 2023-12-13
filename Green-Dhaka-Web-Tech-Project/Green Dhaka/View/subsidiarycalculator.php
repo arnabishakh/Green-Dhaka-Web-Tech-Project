@@ -3,6 +3,10 @@
 
 
 ?>
+<head>
+    <script src="../Asset/calculator.js" defer></script>
+</head>
+<body>
     <style>
   
          body {
@@ -36,7 +40,7 @@
 
          }
     </style>
-    <form method="post" action="../Controller/calculator.php">
+    <form method="post" action="">
     <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
@@ -105,7 +109,7 @@
                     <td>:
                     </td>
                     <td>
-                   <input type="number" name="rArea" value=""><br>
+                    <input type="number" id="rArea" >
                     </td>
                 
                 </tr>
@@ -115,7 +119,8 @@
                     <td>:
                     </td>
                     <td>
-                    <input type="number" name="gArea" value=""><br>
+                    <input type="number" id="gArea" >
+
                     </td>
                 
                 </tr>
@@ -125,15 +130,17 @@
                     <td>:
                     </td>
                     <td>
-                     <input type="number" name="sArea" value=""><br>
+                    <input type="number" id="sArea" >
+
                     </td>
                 </tr>
                 </table>
                 <br>
                <br><br>
-                <input type="submit" value="submit">
-                <input type="reset" value="Clear">
+                <input type="button" id="submitButton" value="Calculate">
+                 <input type="button" id="clearButton" value="Clear">
                 <br>
+                <div id="result"></div>
                 
                 </td>
 

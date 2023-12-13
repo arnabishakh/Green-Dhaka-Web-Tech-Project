@@ -12,7 +12,7 @@
             }
          }
     </style>
-        <form method="post" action="../Controller/fpassCheck.php">
+        <form method="post" action="../Controller/fpassCheck.php" onsubmit="return validateForm()">
           <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="2%" width="15%" align="center">
@@ -36,7 +36,8 @@
                 Valid Email<br> <input type="email" name="email" value="" /> <br>
                 Valid Mobile Number<br> <input type="text" name="cnum" value="" /> <br>
                 New Password<br> <input type="password" name="uppassword" value="" /> <br><br>
-                <input type="submit" name="submit" value="Submit" /><br><br>
+                <input type="submit" name="submit" value="Submit" /><br>
+                <div id="error-container" style="color: red;"></div><br>
                 Create a new account! <a href="register.php" text-align="right"> Register</a><br>
                 <a href="login.php" text-align="left">Login</a>
 
@@ -66,4 +67,4 @@
     </table>  
 
         </form>
-        
+        <script src="../Asset/resetpassword.js"></script>

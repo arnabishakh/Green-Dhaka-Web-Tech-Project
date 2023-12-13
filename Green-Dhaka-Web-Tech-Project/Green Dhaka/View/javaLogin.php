@@ -3,21 +3,8 @@
         echo "null username/password";
     }
 ?>
-<head>
-    <script defer src="../Asset/login.js"></script>
-    
-</head>
-<body>
-    <style>
-  
-         body {
-              background: url('../Images/registerbackground.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         }
-    </style>
-         <form method="post" action="../Controller/logincheck.php" onsubmit="return validation()">
+    <link rel="stylesheet" href="../Asset/login.css">
+        <form method="post" action="../Controller/admincheck.php">
           <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="2%" width="15%" align="center">
@@ -38,12 +25,14 @@
                 </td>
                 <td align="center">
                 <p style="color:Green;"> 
-                Email<br> <input type="email" id="email" name="email" value="" /> <br>
-                Password<br> <input type="password" id="password" name="password" value="" /> 
-                <h4 id="message"></h4><br><br>
-                <input type="submit" name="submit" value="Submit" /><br><br>
-                Create a new account! <a href="register.php" text-align="right"> Register</a><br>
-                <a href="fpass.php" text-align="left">Forgotten Password?</a>
+
+                Email<br> <input type="email" name="email" value="" /> <br>
+                Password<br> <input type="password" name="password" value="" /> <br><br>
+                <input type="submit" name="submit" value="Submit" /><br>
+                
+                <div id="email_error">Please fill up your Email </div>
+                <div id="pass_error">Please fill up your Password</div>
+                <div id="validation_error">Invalid User</div>
 
                 <br>
                 <a href="home.html" text-align="right"> Home</a>
@@ -72,22 +61,4 @@
     </table>  
 
         </form>
-        <script >
-        function validation() {
-    let email = document.getElementById('email').value;
-    let password = document.getElementById('password').value;
-    if (!email) {
-        document.getElementById('message').innerHTML = "Email Couldn't Be Empty!";
-        return false;
-    }
-    if (!password) {
-        document.getElementById('message').innerHTML = "Password Couldn't Be Empty!";
-        return false;
-    }
-    if (password == email) {
-        document.getElementById('message').innerHTML = "Email and Password cannot be same!";
-        return false;
-    }
-}
-
-        </script>
+        

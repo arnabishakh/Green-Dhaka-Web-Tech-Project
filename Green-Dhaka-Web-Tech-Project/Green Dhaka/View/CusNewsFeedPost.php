@@ -4,10 +4,8 @@ session_start();
         header('location: login.php');
     }
     $con = mysqli_connect('127.0.0.1', 'root', '', 'greendhaka');
-    $sql = "SELECT * FROM `feed`";
+    $sql = "SELECT * FROM `feed`where email='{$_SESSION['email']}'";
     $result = mysqli_query($con, $sql);
-   
-
 ?>
     <style>
             body {
@@ -26,7 +24,7 @@ session_start();
                 display: inline-block;
             }
 
-            .panel  a:visited {
+            .panel a:visited {
                 background-color: SeaGreen;
                 color: white;
                 padding: 5px 5px;
@@ -43,13 +41,9 @@ session_start();
                 text-decoration: none;
                 display: inline-block;
             }
-            
-
     </style>
-   
     <table border="0" width = "100%" height = "100%">
             <tr >
-           
                 <td height="5%" width="15%" align="center">
                     <img src="../Images/logo.png" height="100" width="100" alt="Green Dhaka Logo">
                 </td>
@@ -61,12 +55,12 @@ session_start();
                     
                 </td>
                 <td >
-                <div class="panel">
                 <table border="0" align="center">
                     <tr>
-                        <td> <img src="../Images/user.png" height="50" width="50" alt="User Logo">
+                        <td> 
                         </td>
                         <td align="right"> 
+                                <div class="panel">
                             <a href="cusAccount.php"> <?php echo $_SESSION['email']; ?> <a> <br>
                              <a href="cusDashboard.php"> Dashboard <a>
                              <a href="../Controller/logout.php"> Logout <a></div>
@@ -78,9 +72,9 @@ session_start();
                 </td>
             </tr>
             <tr>
-                <td class="notification" colspan="3" align="center" height ="8%">
+                <td colspan="3" align="center" height ="8%">
                 <div class="panel">
-                    <a href="cusGardenregistration.php">Garden Registration</a>
+                     <a href="cusGardenregistration.php">Garden Registration</a>
                     <a href="cusSolarregistration.php">Solar Panel Request</a>
                     <a href="CusNewsFeed.php">News feed</a>
                     <a href="cusSubsidiarycalculator.php">Subsidiary Calculator</a>
@@ -99,14 +93,14 @@ session_start();
                 
             </tr>
             <tr>
-            
-            <td align="center" height ="15%">
+            <td align ="center" height ="15%">
             <div class="panel">
-                <a href="CusNewsFeedPost.php"> My Post </a><br></div>
-                </td>
+                <a href="CusNewsFeed.php"> News Feed </a></div>
+
+            </td>
                 <td align ="center" height ="15%">
-                
-                <h1 style="color:SeaGreen;"><br> <b> News Feed </b> </h1>
+                <br>
+                <h1 style="color:SeaGreen;"> <b> My Post </b> </h1><br>
                 
                 
 
@@ -114,7 +108,7 @@ session_start();
                 
                 <td align="center" height ="15%">
                 <div class="panel">
-                <a href="CusNewsFeedUpload.php"> Make a Post </a><br></div>
+                <a href="CusNewsFeedUpload.php"> Make a Post </a></div>
                 </td>
             </tr>
             <tr>
@@ -123,39 +117,12 @@ session_start();
             <td>
             
                         <?php while($data = mysqli_fetch_assoc($result)){
-                           
                             $pid = $data['pid'];
                             $email = $data['email'];
                             $caption = $data['caption'];
                             $image = $data['image'];
                             $time = $data['date'];
                             if($image != null){
-                                echo'<br>
-                                 
-                                
-                                <table border="1" align="center" style="width:500px">
-                                <tr><td>
-                               <table border="0" align="center" style="width:500px">
-                                <tr>
-                                <td>
-                                 <p style="color:Green;">
-                                    <b> #'.$email.'  </b> </p> </td>
-                                <td>'.$time.' </td>
-                                </tr>
-                                <tr>
-                                <td>  '.$caption.'  </td> </tr>
-                               <tr>
-                                <td align="center"><a href="../Asset/Feed/'.$image.'"> <img src="../Asset/Feed/'.$image.'" height="60%" width="60%"> </a> </td> </tr>
-                                <tr>
-                                <td>  Reaction  </td> </tr>
-                               </table>
-                                </td></tr>
-                        
-                                </table>
-                                
-                            ';
-                            }
-                            else{
                                 echo'<br>
                                 <table border="1" align="center" style="width:500px">
                                 <tr><td>
@@ -168,6 +135,29 @@ session_start();
                                 </tr>
                                 <tr>
                                 <td>  '.$caption.'  </td> </tr>
+                               <tr>
+                                <td align="center"><a href="../Asset/Feed/'.$image.'"> <img src="../Asset/Feed/'.$image.'" height="60%" width="60%"> </a> </td> </tr>
+                                <tr>
+                                <td>  Reaction  </td> </tr>
+                               </table>
+                                </td></tr>
+                        
+                                </table>
+                            ';
+                            }
+                            else{
+                                echo'<br>
+                                <table border="1" align="center" style="width:500px">
+                                <tr><td>
+                               <table border="0" align="center" style="width:500px">
+                                <tr>
+                                <td>
+                                 <p style="color:Green;">
+                                    <b> #'.$email.'  </b> </p> </td>
+                                     <td>'.$time.' </td>
+                                </tr>
+                                <tr>
+                                <td>  '.$caption.'  </td> </tr>
                                
                                 <tr>
                                 <td>  Reaction  </td> </tr>
@@ -177,7 +167,6 @@ session_start();
                                 </table>
                             ';
                             }
-                            
                         }
                         ?>
                        
@@ -202,4 +191,4 @@ session_start();
             
 
     </table>
-    
+ 

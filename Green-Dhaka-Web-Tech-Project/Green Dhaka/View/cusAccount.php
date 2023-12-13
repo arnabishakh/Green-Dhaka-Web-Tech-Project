@@ -86,7 +86,7 @@
                     <a href="cusDonation.php">Donation</a>
                     <a href="cusHiringagardener.php">Hire a Gardener</a>
                     <a href="cusExpert.php">Expert opinion</a>
-                    <a href="cusHomevisit.php">Schedule a Home Visit</a>
+                    <a href="cusChat.php">Shoutbox</a>
                     <a href="cusSupport.php">Support</a>
                     <a href="cusServiceHistory.php">Service History</a>
                     <a href="cusAboutUS.php">About Us</a>

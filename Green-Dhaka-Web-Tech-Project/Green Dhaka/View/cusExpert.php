@@ -5,6 +5,11 @@ session_start();
     }
 
 ?>
+<html>
+<head>
+<script src="../Asset/expert.js" defer></script>
+</head>
+<body>
     <style>
   
          body {
@@ -38,7 +43,7 @@ session_start();
 
          }
     </style>
-    <form method="post" action="../Controller/solarinsert.php">
+    <form method="post" action="">
     <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
@@ -91,9 +96,19 @@ session_start();
         
             </td>
                 <td align ="center">
-                <h1 style="color:SeaGreen;"> <b> Expert Opinion </b> </h1>
-                <h3 style="color:SeaGreen;"> Under Maintanance  </h3>
-                
+                <h1>Expert Opinion Request</h1>
+                    <label for="expert">Choose an expert:</label>
+                    <select id="expert" name="expert">
+                        
+                    </select>
+                    <br>
+                    <label for="date">Select date:</label>
+                    <input type="date" id="date" name="date">
+                    <br>
+                    <button type="button" onclick="requestAppointment()">Request Appointment</button>
+                    <div id="message"></div>
+
+                    
 
                 </td>
 

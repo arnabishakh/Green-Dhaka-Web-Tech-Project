@@ -2,39 +2,7 @@
     require_once('../Controller/cusDatabyadmin.php');
 
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-
-         }
-    </style>
+   <link rel="stylesheet" href="../Asset/styleAdmin.css">
     <form method="post" action="">
     <table border="0" width = "100%" height = "100%">
             <tr >

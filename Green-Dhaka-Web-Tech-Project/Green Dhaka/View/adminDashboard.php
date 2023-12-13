@@ -1,42 +1,11 @@
 <?php
+session_start();
+    if(!isset($_SESSION['valid'])){
+        header('location: login.php');
+    }
 
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                font-size:30px;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                font-size:30px;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                font-size:30px;
-                text-decoration: none;
-                display: inline-block;
-
-         }
-    </style>
+    <link rel="stylesheet" href="../Asset/styleAdmin.css">
 
     <table border="0" width = "100%" height = "100%">
             <tr >
@@ -81,7 +50,7 @@
                             </td> 
                             <td> <a href="adminSolarRegistration.php">Solar Panel Approval</a>
                             </td>
-                            <td> <a href="AdminNewsFeed.php">News feed Approval</a>
+                            <td> <a href="AdminNewsFeed.php">News feed </a>
                             </td>
                         </tr>
                          <tr>
@@ -95,13 +64,13 @@
                          <tr>
                             <td> <a href="adminHiringagardener.php">Gardener Approval</a>
                             </td>
-                            <td> <a href="adminExpert.php">Expert Appointment Approval</a>
+                            <td> <a href="adminExpert.php">Expert Appointment </a>
                             </td>
                             <td>  <a href="AdminHomeVisit.php">Home Visit Approval</a>
                             </td>
                         </tr>
                         <tr>
-                            <td>  <a href="AdminSupport.php">Support Message</a>
+                            <td>  <a href="AdminSupport.php">ShoutBox</a>
                             </td>
                             <td> <a href="AdminCustomerManagement.php">Customer Management</a>
                             </td>

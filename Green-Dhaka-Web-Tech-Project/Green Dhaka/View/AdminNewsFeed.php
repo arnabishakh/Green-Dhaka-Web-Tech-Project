@@ -3,40 +3,47 @@ session_start();
     if(!isset($_SESSION['valid'])){
         header('location: login.php');
     }
+    $con = mysqli_connect('127.0.0.1', 'root', '', 'greendhaka');
+    $sql = "SELECT * FROM `feed`";
+    $result = mysqli_query($con, $sql);
 
 ?>
     <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
+            body {
+                background-image: url('../Images/white.jpg');
+                background-repeat: no-repeat;
+                background-size: 1500px 600px;
+                
             }
-         a:link {
+
+            .panel a:link {
                 background-color: SeaGreen;
                 color: white;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-         }
-         a:visited {
+            }
+
+            .panel  a:visited {
                 background-color: SeaGreen;
                 color: white;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
-         }
-         a:hover {
+            }
+
+            .panel a:hover {
                 background-color: transparent;
                 color: Black;
                 padding: 5px 5px;
                 text-align: center;
                 text-decoration: none;
                 display: inline-block;
+            }
+            
 
-         }
     </style>
     <form method="post" action="../Controller/solarinsert.php">
     <table border="0" width = "100%" height = "100%">
@@ -68,7 +75,7 @@ session_start();
             </tr>
             <tr>
                 <td colspan="3" align="center" height ="8%">
-                  
+                  <h1 style="color:SeaGreen;"> <b> News Feed </b> </h1>
 
                 </td>
                 
@@ -78,9 +85,73 @@ session_start();
         
             </td>
                 <td align ="center">
-                <h3 style="color:SeaGreen;"> <b> News Feed </b> </h3>
-                <br>
-                <h3 style="color:SeaGreen;"> Under Maintanance  </h3>
+                <?php while($data = mysqli_fetch_assoc($result)){
+                           
+                            $pid = $data['pid'];
+                            $email = $data['email'];
+                            $caption = $data['caption'];
+                            $image = $data['image'];
+                            $time = $data['date'];
+                            if($image != null){
+                                echo'<br>
+                                 
+                                
+                                <table border="1" align="center" style="width:500px">
+                                <tr><td>
+                               <table border="0" align="center" style="width:500px">
+                                <tr>
+                                <td>
+                                 <p style="color:Green;">
+                                    <b> #'.$email.'  </b> </p> </td>
+                                <td>'.$time.' </td>
+                                </tr>
+                                <tr>
+                                <td>  '.$caption.'  </td> </tr>
+                               <tr>
+                                <td align="center"><a href="../Asset/Feed/'.$image.'"> <img src="../Asset/Feed/'.$image.'" height="60%" width="60%"> </a> </td> </tr>
+                                <tr>
+                                <td>  Reaction  </td>
+                                <td> <button><a href=""> Delete </a></button>   </td>
+                                </tr>
+                               </table>
+                                </td></tr>
+                        
+                                </table>
+                                
+                            ';
+                            }
+                            else{
+                                echo'<br>
+                                <table border="1" align="center" style="width:500px">
+                                <tr><td>
+                               <table border="0" align="center" style="width:500px">
+                                <tr>
+                                <td>
+                                 <p style="color:Green;">
+                                    <b> #'.$email.'  </b> </p> </td>
+                                    <td>'.$time.' </td>
+                                </tr>
+                                <tr>
+                                <td>  '.$caption.'  </td> </tr>
+                               
+                                <tr>
+                                <td>  Reaction  </td>
+                                <td> <button><a href=""> Delete </a></button>   </td>
+                                </tr>
+                               </table>
+                                </td></tr>
+                        
+                                </table>
+                            ';
+                            }
+                            
+                        }
+                        ?>
+
+
+
+
+
                 
 
                 </td>

@@ -3,43 +3,34 @@ session_start();
     if(!isset($_SESSION['valid'])){
         header('location: login.php');
     }
+$conn = mysqli_connect('localhost','root','','greendhaka') or die('connection failed');
+if(isset($_POST['add_to_cart'])){
+
+   $product_name = $_POST['product_name'];
+   $product_price = $_POST['product_price'];
+   $product_image = $_POST['product_image'];
+   $product_quantity = 1;
+
+   $select_cart = mysqli_query($conn, "SELECT * FROM `cart` WHERE name = '$product_name'");
+
+   if(mysqli_num_rows($select_cart) > 0){
+      $message[] = 'product already added to cart';
+   }else{
+      $insert_product = mysqli_query($conn, "INSERT INTO `cart`(name, price, image, quantity) VALUES('$product_name', '$product_price', '$product_image', '$product_quantity')");
+      $message[] = 'product added to cart succesfully';
+   }
+
+}
 
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
 
-         }
-    </style>
-    <form method="post" action="../Controller/solarinsert.php">
-    <table border="0" width = "100%" height = "100%">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../Asset/shop.css">
+</head>
+<body>
+   <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
                     <img src="../Images/logo.png" height="100" width="100" alt="Green Dhaka Logo">
@@ -77,7 +68,7 @@ session_start();
                     <a href="cusDonation.php">Donation</a>
                     <a href="cusHiringagardener.php">Hire a Gardener</a>
                     <a href="cusExpert.php">Expert opinion</a>
-                    <a href="cusHomevisit.php">Schedule a Home Visit</a>
+                    <a href="cusChat.php">Shoutbox</a>
                     <a href="cusSupport.php">Support</a>
                     <a href="cusServiceHistory.php">Service History</a>
                     <a href="cusAboutUS.php">About Us</a>
@@ -92,9 +83,55 @@ session_start();
         
             </td>
                 <td align ="center">
-                <h1 style="color:SeaGreen;"> <b> E-Shop </b> </h1>
-                <h3 style="color:SeaGreen;"> Under Maintanance  </h3>
-                
+                        
+
+                        <div class="container">
+
+                        <section class="products">
+
+                           <h2 style="color:SeaGreen;"">E-Shop</h2><br>
+                           <?php include 'header.php'; ?><br>
+                           <?php
+
+                        if(isset($message)){
+                           foreach($message as $message){
+                              echo '<div class="message"><span>'.$message.'</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
+                           };
+                        };
+
+                        ?>
+                          
+                           <div class="box-container">
+
+                              <?php
+      
+                              $select_products = mysqli_query($conn, "SELECT * FROM `products`");
+                              if(mysqli_num_rows($select_products) > 0){
+                                 while($fetch_product = mysqli_fetch_assoc($select_products)){
+                              ?>
+
+                              <form action="" method="post">
+                                 <div class="box">
+                                    <img src="../Asset/Shop/<?php echo $fetch_product['image']; ?>" alt="">
+                                    <h3><?php echo $fetch_product['name']; ?></h3>
+                                    <div class="price"><?php echo $fetch_product['price']; ?> bdt</div>
+                                    <input type="hidden" name="product_name" value="<?php echo $fetch_product['name']; ?>">
+                                    <input type="hidden" name="product_price" value="<?php echo $fetch_product['price']; ?>">
+                                    <input type="hidden" name="product_image" value="<?php echo $fetch_product['image']; ?>">
+                                    <input type="submit" class="btn" value="add to cart" name="add_to_cart">
+                                 </div>
+                              </form>
+
+                              <?php
+                                 };
+                              };
+                              ?>
+
+                           </div>
+
+                        </section>
+
+                        </div>
 
                 </td>
 
@@ -115,4 +152,7 @@ session_start();
             
 
     </table>
-    </form>
+<script src="../Asset/shop.js"></script>
+
+</body>
+</html>

@@ -1,41 +1,16 @@
 <?php
-
+session_start();
+    if(!isset($_SESSION['valid'])){
+        header('location: login.php');
+    }
 
 ?>
-    <style>
-  
-         body {
-              background-image: url('../Images/white.jpg');
-              background-position: center;
-              background-size: cover;
-            }
-         a:link {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:visited {
-                background-color: SeaGreen;
-                color: white;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-         }
-         a:hover {
-                background-color: transparent;
-                color: Black;
-                padding: 5px 5px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-
-         }
-    </style>
-    <form method="post" action="../Controller/solarinsert.php">
+<html>
+<head>
+<link rel="stylesheet" href="../Asset/chat.css">
+</head>
+<body>
+    
     <table border="0" width = "100%" height = "100%">
             <tr >
                 <td height="5%" width="15%" align="center">
@@ -75,10 +50,16 @@
         
             </td>
                 <td align ="center">
-                <h3 style="color:SeaGreen;"> <b> Support Messages </b> </h3>
-                <br>
-                <h3 style="color:SeaGreen;"> Under Maintanance  </h3>
                 
+                <div id="chat-container">
+                        <div id="chat-messages"></div>
+                        <div id="user-input">
+                            <textarea id="message-input"  rows="4" cols="60"></textarea>
+                           <br>
+                            <button onclick="sendMessage()">Send</button>
+                        </div>
+                    </div>
+
 
                 </td>
 
@@ -99,4 +80,6 @@
             
 
     </table>
-    </form>
+    <script src="../Asset/chat.js"></script>
+   </body>
+   </html>

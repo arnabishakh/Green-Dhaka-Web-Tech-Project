@@ -1,10 +1,8 @@
 <?php
-    $con = mysqli_connect('127.0.0.1', 'root', '', 'greendhaka');
-    $sql = "SELECT * FROM `feedback`";
-    $result = mysqli_query($con, $sql);
-
+   $conn = mysqli_connect('localhost','root','','greendhaka') or die('connection failed');
+    $result = mysqli_query($conn, "SELECT * FROM `order`");
 ?>
-    <link rel="stylesheet" href="../Asset/styleAdmin.css">
+   <link rel="stylesheet" href="../Asset/styleAdmin.css">
     <form method="post" action="../Controller/solarinsert.php">
     <table border="0" width = "100%" height = "100%">
             <tr >
@@ -45,19 +43,37 @@
         
             </td>
                 <td align ="center">
-                <h3 style="color:SeaGreen;"> Feedback List  </h3>
+                <h3 style="color:SeaGreen;"> Order List  </h3>
 
                     <table border="1" width ="90%" align ="center">
                         <tr >
-                            <th> Email   </th>
-                            <th> Feedback   </th>
-                            
+                            <td> Name   </td>
+                            <td> Number  </td>
+                            <td> Email   </td>
+                            <td> Payment Method   </td>
+                            <td> Flat  </td>
+                            <td> Street  </td>
+                            <td> City   </td>
+                            <td> state   </td>
+                            <td> Country   </td>
+                            <td> Zip  </td>
+                            <td> Products   </td>
+                            <td> Bill   </td>
                         </tr>
                         <?php while($data = mysqli_fetch_assoc($result)){ ?>
                                 <tr>
+                                    <td><?=$data['name']?></td>
+                                    <td><?=$data['number']?></td>
                                     <td><?=$data['email']?></td>
-                                    <td><?=$data['feedback']?></td>
-                                    
+                                    <td><?=$data['method']?></td>
+                                    <td><?=$data['flat']?></td>
+                                    <td><?=$data['street']?></td>
+                                    <td><?=$data['city']?></td>
+                                    <td><?=$data['state']?></td>
+                                    <td><?=$data['country']?></td>
+                                    <td><?=$data['pin_code']?></td>
+                                    <td><?=$data['total_products']?></td>
+                                    <td><?=$data['total_price']?></td>
                                 </tr>
                               <?php  } ?>
                     </table>    
